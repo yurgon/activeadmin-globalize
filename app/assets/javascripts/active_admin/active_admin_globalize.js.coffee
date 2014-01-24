@@ -5,16 +5,11 @@ $ ->
     # Hides or shows the + button and the remove button.
     updateLocaleButtonsStatus = ($dom) ->
       $localeList = $dom.find('.add-locale ul li:not(.hidden)')
-      if ($localeList.length == 0)
+      if $localeList.length == 0
         $dom.find('.add-locale').hide()
       else
         $dom.find('.add-locale').show()
 
-      $tabs = $dom.children('li:not(.add-locale)').find('a:not(.hidden)')
-      if ($tabs.length > 1)
-        $tabs.find('span').removeClass('hidden')
-      else
-        $tabs.find('span').addClass('hidden')
 
     # Hides or shows the locale tab and its corresponding element in the add menu.
     toggleTab = ($tab, active) ->
@@ -45,7 +40,7 @@ $ ->
 
         # Collect tha available locales.
         availableLocales = []
-        $tabs.each ->
+        $tabs.not('.default').each ->
           availableLocales.push($('<li></li>').append($(this).clone().removeClass('active')))
 
         # Create a new tab as the root of the drop down menu.
@@ -73,12 +68,11 @@ $ ->
           updateLocaleButtonsStatus($dom)
 
         # Add the remove button to every tab.
-        $tabs.append($removeButton)
+        $tabs.not('.default').append($removeButton)
 
         # Add the new button at the end of the locale list.
         $dom.append($addLocaleButton)
 
-        numberOfHidden = 0
         $tabs.each ->
           $tab = $(@)
           $content = $contents.filter($tab.attr("href"))
@@ -87,7 +81,7 @@ $ ->
           # Find those tabs that are in use.
           hide = true
           # We will not hide the tabs that have any error.
-          if $tab.hasClass('error')
+          if $tab.hasClass('error') || $tab.hasClass('default')
             hide = false
           else
             # Check whether the input fields are empty or not.
@@ -98,24 +92,27 @@ $ ->
                 return false
 
           if hide
-            numberOfHidden++
             toggleTab($tab, false)
           else
             toggleTab($tab, true)
 
-        # Every tab became hidden, show the first one.
-        if numberOfHidden == $tabs.length
-          $tabs.eq(0).show().removeClass('hidden')
-          $addLocaleButton.find('li:has(a[href="' + $tabs.eq(0).attr('href') + '"])').hide().addClass('hidden')
-
-        # Remove the fields of those locales before form submission that have not been added.
-        $dom.parents('form').submit ->
-          $tabs.each ->
-            if $(this).hasClass('hidden')
-              $($(this).attr('href')).remove()
+        # Remove the fields of hidden locales before form submission.
+        $form = $dom.parents('form')
+        if !$form.data('ready')
+          $form.data('ready')
+          $form.submit ->
+            # Get all translations (the nested ones too).
+            $('.activeadmin-translations > ul').each ->
+              # Get the corresponding fieldsets.
+              $fieldsets = $(this).siblings('fieldset')
+              $("li:not(.add-locale) > a", this).each ->
+                # Remove them if the locale is hidden.
+                if $(this).hasClass('hidden')
+                  $fieldsets.filter($(this).attr('href')).remove()
 
         #Initially update the buttons' status
         updateLocaleButtonsStatus($dom)
+        $tabs.filter('.default').click()
 
   # this is to handle elements created with has_many
   $("a").bind "click", ->
