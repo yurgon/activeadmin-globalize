@@ -108,7 +108,21 @@ $ ->
               $("li:not(.add-locale) > a", this).each ->
                 # Remove them if the locale is hidden.
                 if $(this).hasClass('hidden')
-                  $fieldsets.filter($(this).attr('href')).remove()
+                  # check if it's an existing translation otherwise remove it
+                  $currentFieldset = $("fieldset#{$(this).attr('href')}")
+                  $translationId = $('input[id$=_id]', $currentFieldset)
+                  if $translationId.val()
+                    # mark it for database removal appending a _destroy element
+                    $destroy = $('<input/>').attr(
+                      type: 'hidden',
+                      name: $translationId.attr('name').replace('[id]', '[_destroy]'),
+                      id: $translationId.attr('id').replace('_id', '_destroy'),
+                      value: '1'
+                    )
+                    $destroy.appendTo($currentFieldset)
+                  else
+                    # remove the fieldset from dom so it won't be submitted
+                    $fieldsets.filter($(this).attr('href')).remove()
 
         #Initially update the buttons' status
         updateLocaleButtonsStatus($dom)
