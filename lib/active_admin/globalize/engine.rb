@@ -3,7 +3,7 @@ require 'active_admin/globalize3/filter_empty_translations'
 module ActiveAdmin
   module Globalize
     class Engine < ::Rails::Engine
-      initializer "Active Admin precompile hook", group: :assets do |app|
+      initializer "Active Admin precompile hook", group: :all do |app|
         app.config.assets.precompile += [
           "active_admin/active_admin_globalize.css",
           "active_admin/active_admin_globalize.js"
