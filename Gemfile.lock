@@ -22,7 +22,7 @@ PATH
   specs:
     activeadmin-globalize (1.0.0)
       activeadmin
-      globalize (~> 4.0.0)
+      globalize (>= 3.0.4)
 
 GEM
   remote: https://rubygems.org/
@@ -77,7 +77,7 @@ GEM
     execjs (2.0.2)
     formtastic (2.3.0.rc2)
       actionpack (>= 3.0)
-    globalize (4.0.0)
+    globalize (4.0.1)
       activemodel (>= 4.0.0, < 5)
       activerecord (>= 4.0.0, < 5)
     has_scope (0.6.0.rc)
