@@ -12,12 +12,9 @@ module ActiveAdmin
       end
       def translation_status_flags
         column I18n.t("active_admin.globalize.translations") do |obj|
-          obj.translated_locales.map do |l|
-            image_tag '%s.gif' % [ l.to_s ]
-          end.join(" ").html_safe
+          obj.translated_locales.map { |l| flag_icon(l) }.join(' ').html_safe
         end
       end
     end
   end
 end
-
