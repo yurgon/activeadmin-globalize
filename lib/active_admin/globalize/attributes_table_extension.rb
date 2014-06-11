@@ -40,10 +40,15 @@ module ActiveAdmin
       #  end
       #
       def translated_row(*args, &block)
-        options = args.dup.extract_options!
+        options = args.extract_options!
         options.reverse_merge!(inline: true, locale: I18n.locale)
         field = options[:field] || args.first
         raise ArgumentError, "Field '#{field}' is not translatable" unless translatable?(field)
+        # Remove my options from passed options
+        row_options = options.symbolize_keys.except(:field, :locale, :inline)
+        # Append remaining options to original args
+        args.push(row_options) unless row_options.empty?
+        # Render the table row with translations
         row(*args) do
           ''.html_safe.tap do |value|
             # Add selectors for inline locale
