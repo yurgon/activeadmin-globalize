@@ -32,7 +32,7 @@ group :test do
   gem 'rspec-rails', '~> 2.14.0'
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'database_cleaner', '~> 1.0.1'
-  gem 'guard-rspec'
+  gem 'guard-rspec', require: false
   gem 'capybara', '~> 2.1.0'
   gem 'poltergeist'
   # Useful to debug tests
