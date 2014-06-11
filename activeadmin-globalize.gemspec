@@ -13,9 +13,9 @@ Gem::Specification.new do |s|
   s.summary     = 'Handles globalize translations'
   s.description = 'Handles globalize translations'
 
-  s.files = Dir['{app,config,db,lib}/**/*'] + ['MIT-LICENSE', 'README.md']
+  s.files = Dir['{app,config,db,lib}/**/*'] + %w(MIT-LICENSE README.md)
 
-  s.add_dependency 'activeadmin'
+  s.add_dependency 'activeadmin', '>= 0.6.3'
   s.add_dependency 'globalize', '>= 3.0.4'
 
   # development dependencies
