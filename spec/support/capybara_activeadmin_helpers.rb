@@ -55,6 +55,30 @@ module Capybara
       find 'input[type="submit"]'
     end
 
+    # Return Nth table row
+    def table_row_number(n)
+      find "table tr:nth-child(#{n})"
+    end
+
+    def first_table_row
+      table_row_number(1)
+    end
+
+    def second_table_row
+      table_row_number(2)
+    end
+
+    # Return the anchor element with flag class
+    def flag_icon(locale = I18n.locale)
+      find ".flag-#{locale}"
+    end
+
+    # Return an a element used to trigger language switch using javascript
+    def flag_link(locale = I18n.locale)
+      # find the flag icon by class and go back to parent to get the link
+      find(:xpath, %Q{.//img[contains(@class, "flag-#{locale}")]/..})
+    end
+
     # Method used to login a specific user
     def login_user(user, password = 'password')
       @current_admin_user = user
