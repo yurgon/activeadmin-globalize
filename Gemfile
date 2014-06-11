@@ -33,8 +33,11 @@ group :test do
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'database_cleaner', '~> 1.0.1'
   gem 'guard-rspec', require: false
+  gem 'spring', require: false
+  gem 'spring-commands-rspec', require: false
   gem 'capybara', '~> 2.1.0'
   gem 'poltergeist'
+  gem 'fuubar'
   # Useful to debug tests
   gem 'awesome_print'
   gem 'pry'
