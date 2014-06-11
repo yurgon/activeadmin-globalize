@@ -21,10 +21,7 @@ Gem::Specification.new do |s|
   # development dependencies
   s.add_development_dependency 'bundler', '~> 1.6.1'
   s.add_development_dependency 'rake'
-  s.add_development_dependency 'sqlite3', '~> 1.3.5'
-  s.add_development_dependency 'rspec-rails', '~> 2.14.0'
-  s.add_development_dependency 'guard-rspec'
-  s.add_development_dependency 'capybara', '~> 2.1.0'
+  # Other development dependencies moved into Gemfile
 
 end
 

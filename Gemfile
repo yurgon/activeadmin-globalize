@@ -26,3 +26,12 @@ end
 
 # jquery-rails is
 gem 'jquery-rails'
+
+group :test do
+  gem 'sqlite3', '~> 1.3.5'
+  gem 'rspec-rails', '~> 2.14.0'
+  gem 'factory_girl_rails', '~> 4.2.1'
+  gem 'database_cleaner', '~> 1.0.1'
+  gem 'guard-rspec'
+  gem 'capybara', '~> 2.1.0'
+end
