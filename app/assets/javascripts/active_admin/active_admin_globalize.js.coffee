@@ -135,5 +135,13 @@ $ ->
       50
     )
 
+  # Used to toggle translations values for inline fields
+  $('a.ui-translation-trigger').click (e) ->
+    $locale = $(this).data('locale')
+    $td = $(this).closest('td')
+    $('.field-translation', $td).hide()
+    $(".#{$locale}-field", $td).show()
+    e.preventDefault()
+
   translations()
 

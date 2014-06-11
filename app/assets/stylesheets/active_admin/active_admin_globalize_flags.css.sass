@@ -5,6 +5,7 @@
 .flag
   width: 16px
   height: 11px
+  vertical-align: middle
   background: url(active_admin_image_path('flags.png')) no-repeat
   &.flag-ar // originally flag-ae
     background-position: -16px 0
@@ -28,3 +29,10 @@
     background-position: -32px -22px
   &.flag-en // originally flag-us
     background-position: -48px -22px
+
+// Used to distantiate inline locale selector
+span.inline-locale-selector
+  margin-right: 10px
+
+.field-translation.hidden
+  display: none
