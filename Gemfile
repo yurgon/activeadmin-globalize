@@ -35,4 +35,7 @@ group :test do
   gem 'guard-rspec'
   gem 'capybara', '~> 2.1.0'
   gem 'poltergeist'
+  # Useful to debug tests
+  gem 'awesome_print'
+  gem 'pry'
 end
