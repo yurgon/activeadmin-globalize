@@ -34,4 +34,5 @@ group :test do
   gem 'database_cleaner', '~> 1.0.1'
   gem 'guard-rspec'
   gem 'capybara', '~> 2.1.0'
+  gem 'poltergeist'
 end
