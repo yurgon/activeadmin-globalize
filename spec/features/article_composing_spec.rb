@@ -8,12 +8,13 @@ feature 'Article composing' do
     login_user(current_user)
   end
 
-  scenario 'Create an article' do
+  scenario 'Create an article', :js do
 
     within(main_menubar) { click_link 'Articles' }
     within(action_bar) { click_link 'New Article' }
 
     within page_body do
+      # This will fill visible fields i.e. for the default locale
       fill_in 'Title', with: 'A new article title'
       fill_in 'Body', with: 'Something interesting to say'
       submit_button.click
