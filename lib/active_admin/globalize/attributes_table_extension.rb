@@ -50,11 +50,22 @@ module ActiveAdmin
         args.push(row_options) unless row_options.empty?
         # Render the table row with translations
         row(*args) do
-          ''.html_safe.tap do |value|
-            # Add selectors for inline locale
-            value << inline_locale_selectors if options[:inline]
-            # Build translations spans
-            value << field_translations(field, options[:locale], &block)
+          if options[:inline]
+            ''.html_safe.tap do |value|
+              # Add selectors for inline locale
+              value << inline_locale_selectors
+              # Build translations spans
+              value << field_translations(field, :span, options[:locale], &block)
+            end
+          else
+            content_tag(:div, class: 'activeadmin-translations') do
+              ''.html_safe.tap do |value|
+                # Render selectors as in translation ui
+                value << block_locale_selectors
+                # Build translations divs for actual translations
+                value << field_translations(field, :div, options[:locale], &block)
+              end
+            end
           end
         end
       end
@@ -67,19 +78,35 @@ module ActiveAdmin
             @record.class.translated_attribute_names.include?(field.to_sym)
       end
 
-      # Build a span for each field translation
-      def field_translations(field, initial_locale)
+      # Build a tag for each field translation with appropriate css classes to make javascript working
+      # @param [String] field field name to render
+      # @param [Symbol] tag tag to enclose field translation
+      # @param [Symbol] initial_locale locale to set as not hidden
+      def field_translations(field, tag, initial_locale)
         @record.translations.map do |translation|
           # Classes for translation span only first element is visible
-          css_classes = ["#{translation.locale}-field", 'field-translation']
+          css_classes = ['field-translation', "locale-#{translation.locale}"]
           # Initially only element for selected locale is visible
           css_classes.push 'hidden' unless translation.locale == initial_locale.to_sym
           # build span with translation
-          content_tag(:span, class: css_classes) do
+          content_tag(tag, class: css_classes) do
             # If block given call it with translation model, else return raw value of field
             block_given? ? yield(translation) : translation.send(field)
           end
         end.join(' ').html_safe
+      end
+
+      def block_locale_selectors
+        content_tag(:ul, class: 'available-locales locale-selector') do
+          @record.translations.map(&:locale).map do |locale|
+            default = 'default' if locale == I18n.default_locale
+            content_tag(:li, class: 'translation-tab') do
+              I18n.with_locale(locale) do
+                content_tag(:a, I18n.t(:"active_admin.globalize.language.#{locale}"), href: ".locale-#{locale}", class: default)
+              end
+            end
+          end.join.html_safe
+        end
       end
 
       # Return flag elements to show the given locale using javascript

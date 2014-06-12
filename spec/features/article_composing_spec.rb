@@ -65,6 +65,18 @@ feature 'Article localization features', :js do
 
     end
 
+    scenario 'Switch block translations' do
+
+      # Third table has a block translation element
+      within third_table_row do
+        page.should have_css 'th', text: 'BODY'
+        page.should have_css 'div.field-translation', text: article.body
+        tab_link(:it).click # change shown translation
+        page.should have_css 'div.field-translation', text: article.translation_for(:it).body
+      end
+
+    end
+
   end
 
 end

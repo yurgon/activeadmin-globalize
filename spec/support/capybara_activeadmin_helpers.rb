@@ -68,6 +68,10 @@ module Capybara
       table_row_number(2)
     end
 
+    def third_table_row
+      table_row_number(3)
+    end
+
     # Return the anchor element with flag class
     def flag_icon(locale = I18n.locale)
       find ".flag-#{locale}"
@@ -77,6 +81,11 @@ module Capybara
     def flag_link(locale = I18n.locale)
       # find the flag icon by class and go back to parent to get the link
       find(:xpath, %Q{.//img[contains(@class, "flag-#{locale}")]/..})
+    end
+
+    # Link used to switch tabs for translations
+    def tab_link(locale = I18n.locale)
+      find %Q{li.translation-tab a[href='.locale-#{locale}']}
     end
 
     # Method used to login a specific user
