@@ -23,10 +23,14 @@ $ ->
 
     $(".activeadmin-translations > ul").each ->
       $dom = $(this)
+      # true when tabs are used in show action, false in form
+      showAction = $dom.hasClass('locale-selector')
+
       if !$dom.data("ready")
         $dom.data("ready", true)
         $tabs = $("li > a", this)
-        $contents = $(this).siblings("fieldset")
+        # content to toggle is different according to current action
+        $contents = if showAction then $(this).siblings("div.field-translation") else $(this).siblings("fieldset")
 
         $tabs.click (e) ->
           $tab = $(this)
@@ -37,6 +41,9 @@ $ ->
           e.preventDefault()
 
         $tabs.eq(0).click()
+
+        # Add button and other behavior is not needed in show action
+        return if showAction
 
         # Collect tha available locales.
         availableLocales = []
@@ -134,6 +141,14 @@ $ ->
       -> translations()
       50
     )
+
+  # Used to toggle translations values for inline fields
+  $('a.ui-translation-trigger').click (e) ->
+    $locale = $(this).data('locale')
+    $td = $(this).closest('td')
+    $('.field-translation', $td).hide()
+    $(".locale-#{$locale}", $td).show()
+    e.preventDefault()
 
   translations()
 
