@@ -11,6 +11,8 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 # `brew install phantomjs` to make it working
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
+# save screenshots and html of failed js tests
+require 'capybara-screenshot/rspec'
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true

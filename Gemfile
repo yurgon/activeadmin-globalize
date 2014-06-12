@@ -36,6 +36,7 @@ group :test do
   gem 'spring', require: false
   gem 'spring-commands-rspec', require: false
   gem 'capybara', '~> 2.1.0'
+  gem 'capybara-screenshot'
   gem 'poltergeist'
   gem 'fuubar'
   # Useful to debug tests
