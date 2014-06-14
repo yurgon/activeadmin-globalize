@@ -77,6 +77,26 @@ feature 'Article localization features', :js do
 
     end
 
+    scenario 'Viewing empty translations' do
+      # create empty translations for it
+      I18n.with_locale(:de) { article.update_attributes! title: '', body: '' }
+      # Reload article page
+      visit admin_article_path(article)
+
+      # First row shows default locale with label title
+      within first_table_row do
+        flag_link(:de).click # change shown translation
+        page.should have_css 'span.field-translation.empty', text: 'EMPTY'
+      end
+
+      # Third table has a block translation element
+      within third_table_row do
+        tab_link(:de).click # change shown translation
+        page.should have_css 'div.field-translation span.empty', text: 'EMPTY'
+      end
+
+    end
+
   end
 
 end
