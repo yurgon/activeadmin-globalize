@@ -88,8 +88,10 @@ module ActiveAdmin
           css_classes = ['field-translation', "locale-#{translation.locale}"]
           # Initially only element for selected locale is visible
           css_classes.push 'hidden' unless translation.locale == initial_locale.to_sym
-          # Build content for cell or div
-          content = block_given? ? yield(translation) : translation.send(field)
+          # Build content for cell or div using translation locale and given block
+          content = I18n.with_locale(translation.locale) do
+            block_given? ? yield(translation) : translation.send(field)
+          end
           # return element
           if tag == :span # inline element
             # attach class to span if inline
