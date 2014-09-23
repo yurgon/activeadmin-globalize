@@ -4,6 +4,12 @@ require File.expand_path('../dummy/config/environment', __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 
+# Needed in rails4 to run specs, see https://github.com/activeadmin/activeadmin/issues/2712#issuecomment-46798603
+require_relative 'dummy/app/admin/articles'
+require_relative 'dummy/app/admin/admin_users'
+require_relative 'dummy/app/admin/dashboard'
+require_relative 'dummy/config/routes'
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }

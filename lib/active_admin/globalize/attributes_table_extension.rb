@@ -74,8 +74,8 @@ module ActiveAdmin
 
       # @return [Boolean] true iff the field is translatable
       def translatable?(field)
-        @record.class.translates? &&
-            @record.class.translated_attribute_names.include?(field.to_sym)
+        @resource_class.translates? &&
+            @resource_class.translated_attribute_names.include?(field.to_sym)
       end
 
       # Build a tag for each field translation with appropriate css classes to make javascript working
@@ -131,7 +131,7 @@ module ActiveAdmin
       end
 
       def available_translations
-        @record_translations ||= @record.translations.order(:locale)
+        @record_translations ||= @collection.first.translations.order(:locale)
       end
 
     end
