@@ -2,6 +2,9 @@
 
 Makes it easy to translate your resource fields.
 
+[![Gem Version](https://badge.fury.io/rb/activeadmin-globalize.svg)](http://badge.fury.io/rb/activeadmin-globalize)
+[![Build Status](https://travis-ci.org/fabn/activeadmin-globalize.svg?branch=develop)](https://travis-ci.org/fabn/activeadmin-globalize)
+
 ## Installation
 
 This version targets Rails 4 and greater and ActiveAdmin >= 1.0.0.pre.
