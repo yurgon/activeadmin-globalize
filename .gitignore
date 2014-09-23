@@ -1,3 +1,16 @@
 .bundle/
 .bin
 
+# sqlite files
+*.sqlite3
+
+# tmp files
+tmp/
+
+# ignore Gemfile.lock and other lockfiles
+*.lock
+
+# Dummy app ignored stuff
+spec/dummy/db/*.sqlite3
+spec/dummy/log/*.log
+spec/dummy/tmp/

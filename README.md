@@ -4,11 +4,10 @@ Makes it easy to translate your resource fields.
 ## Installation
 
 ```ruby
-gem "activeadmin-globalize", github: 'stefanoverna/activeadmin-globalize',
-branch: 'master'
+gem 'activeadmin-globalize', '~> 0.6.3'
 ```
-We still need to use GitHub because ActiveAdmin is still in active development
-and there's no released gem compatible with Rails 4.
+
+This version targets Rails 3.2.x only and ActiveAdmin ~> 0.6.3.
 
 ## Your model
 
@@ -21,8 +20,10 @@ end
 
 ```ruby
 index do
-  # ...
+  # textual translation status
   translation_status
+  # or with flag icons
+  translation_status_flags
   # ...
   default_actions
 end
@@ -50,3 +51,7 @@ to symbol (in application.rb)
 
   config.i18n.available_locales = [:en, :it, :de, :es, :"pt-BR"]
 
+## Credits
+
+This work is based on original idea by [@stefanoverna](https://github.com/stefanoverna/activeadmin-globalize),
+ I needed it for AA 0.6.x so I forked the original project.

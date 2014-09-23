@@ -10,9 +10,10 @@ module ActiveAdmin
         form_buffers.last << template.content_tag(:div, class: "activeadmin-translations") do
           template.content_tag(:ul, class: "available-locales") do
             (auto_sort ? I18n.available_locales.sort : I18n.available_locales).map do |locale|
+              default = 'default' if locale == I18n.default_locale
               template.content_tag(:li) do
                 I18n.with_locale(switch_locale ? locale : I18n.locale) do
-                  template.content_tag(:a, I18n.t(:"active_admin.globalize.language.#{locale}"), href:".locale-#{locale}")
+                  template.content_tag(:a, I18n.t(:"active_admin.globalize.language.#{locale}"), href:".locale-#{locale}", :class => default)
                 end
               end
             end.join.html_safe

@@ -1,0 +1,6 @@
+language: ruby
+rvm:
+  - 1.9.3
+  - 2.0.0
+# Load database schema before rake
+before_script: bundle exec rake db:schema:load

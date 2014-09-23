@@ -1,5 +1,7 @@
 @import "active_admin/mixins"
 
+@import "active_admin_globalize_flags"
+
 .active_admin
   .activeadmin-translations
     margin-bottom: 20px
@@ -21,6 +23,7 @@
           padding: 8px 15px
           padding-bottom: 8px + 4px
           margin-bottom: 0
+          position: relative
 
           &.error
             color: #932419
@@ -33,6 +36,72 @@
             +gradient($secondary-gradient-stop, #f4f4f4)
             text-shadow: 0 1px 0 white
             color: #666 !important
+
+          &> span
+            font-size: 0.75em
+            font-weight: bold
+            position: absolute
+            top: 2px
+            right: 4px
+            display: none
+
+            &:hover
+              +text-shadow(red, 1px, 1px, 2px)
+
+          &:hover
+            span
+              display: block
+
+            span.hidden
+              display: none
+
+      &> li.add-locale
+        font-weight: bold
+        position: relative
+        z-index: 100
+
+        &> ul
+          display: none
+          font-size: 17px
+          font-weight: normal
+          padding: 0
+          +border-bottom-radius(4px)
+          position: absolute
+          +shadow(3px, 3px, 5px, #aaa)
+          background: #f4f4f4
+          z-index: 100
+
+          &> li
+            font-size: 17px
+            padding: 8px 15px
+            padding-bottom: 8px + 4px
+            margin-bottom: 0
+
+            &:hover
+              background: #ddd
+              background: -webkit-linear-gradient(left, $secondary-gradient-stop, #f4f4f4)
+              background: -moz-linear-gradient(left, $secondary-gradient-stop, #f4f4f4)
+              background: linear-gradient(left, $secondary-gradient-stop, #f4f4f4)
+
+            &> a
+              text-decoration: none
+              color: #666
+
+          &> li:first-child
+            border-top-right-radius: 4px
+
+        &:hover
+          background: #f4f4f4
+          +inset-shadow(0, 4px, 4px, #ddd)
+          +border-top-radius(4px)
+          margin-bottom: 0
+          +gradient($secondary-gradient-stop, #f4f4f4)
+          text-shadow: 0 1px 0 white
+          color: #666 !important
+
+          &> ul
+            display: block
+
 
     &> fieldset.inputs
       margin-bottom: 0
