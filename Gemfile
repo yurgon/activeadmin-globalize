@@ -26,7 +26,6 @@ gem 'uglifier'
 gem 'jquery-rails'
 
 # Fetch activeadmin from github until is released
-gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 
 group :test do
