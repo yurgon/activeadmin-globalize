@@ -120,6 +120,34 @@ describe ActiveAdmin::Globalize::FormBuilderExtension do
 
       end
 
+      context 'when using arb inside builder' do
+        let :body do
+          # Form output will be available as capybara string
+          build_form({}, record) do |f|
+            f.translated_inputs 'some legend' do |t|
+              t.input :title
+              para 'arb content'
+              t.input :body
+              h1 'my title'
+            end
+          end
+        end
+
+        it 'render arb tags' do
+          expect(body).to have_css 'p', text: 'arb content'
+          expect(body).to have_css 'h1', text: 'my title'
+        end
+
+        it 'still render user inputs' do
+          expect(fieldset).to have_css 'input[name*="[translations_attributes]"][name*="[title]"]'
+        end
+
+        it 'still render hidden inputs' do
+          expect(fieldset).to have_css 'input[type="hidden"][name*="[translations_attributes]"][name*="[locale]"][value="en"]'
+        end
+
+      end
+
     end
 
   end
