@@ -8,6 +8,5 @@ before_script: bundle exec rake db:schema:load
 # Test on all supported rails versions
 gemfile:
   - gemfiles/activeadmin_master.gemfile
-  - gemfiles/rails3_2.gemfile
   - gemfiles/rails4_1.gemfile
   - gemfiles/rails4_2.gemfile

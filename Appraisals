@@ -1,8 +1,3 @@
-appraise 'rails3_2' do
-  gem 'rails', '~> 3.2.22'
-  gem 'globalize', '~> 3.1.0'
-end
-
 appraise 'rails4_1' do
   gem 'rails', '~> 4.1.12'
   gem 'globalize', '~> 4.0.3'
