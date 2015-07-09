@@ -3,12 +3,12 @@ module ActiveAdmin
     module FormBuilderExtension
       extend ActiveSupport::Concern
 
-      def translated_inputs(name = "Translations", options = {}, &block)
+      def translated_inputs(name = 'Translations', options = {}, &block)
         options.symbolize_keys!
         switch_locale = options.fetch(:switch_locale, false)
         auto_sort = options.fetch(:auto_sort, true)
-        template.content_tag(:div, class: "activeadmin-translations") do
-          template.content_tag(:ul, class: "available-locales") do
+        template.content_tag(:div, class: 'activeadmin-translations') do
+          template.content_tag(:ul, class: 'available-locales') do
             (auto_sort ? I18n.available_locales.sort : I18n.available_locales).map do |locale|
               default = 'default' if locale == I18n.default_locale
               template.content_tag(:li) do
