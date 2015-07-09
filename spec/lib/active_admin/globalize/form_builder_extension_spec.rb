@@ -49,11 +49,9 @@ describe ActiveAdmin::Globalize::FormBuilderExtension do
       main_label = legend_text
       # Form output will be available as capybara string
       build_form({}, record) do |f|
-        f.inputs main_label do
-          f.translated_inputs 'ignored translation label' do |t|
-            t.input :title
-            t.input :body
-          end
+        f.translated_inputs main_label do |t|
+          t.input :title
+          t.input :body
         end
       end
     end
@@ -64,10 +62,6 @@ describe ActiveAdmin::Globalize::FormBuilderExtension do
 
     it 'use the given legend' do
       expect(body).to have_css 'legend', text: legend_text
-    end
-
-    it 'misses the label given to #translated_inputs' do
-      expect(body).to_not have_content 'ignored'
     end
 
     it 'renders main body of translation input' do
@@ -99,6 +93,11 @@ describe ActiveAdmin::Globalize::FormBuilderExtension do
       it 'renders the given inputs for each translatable attribute' do
         # Use the default locale form for this test
         expect(fieldset).to have_css 'input[name*="[translations_attributes]"][name*="[title]"]'
+        expect(fieldset).to have_css 'textarea[name*="[translations_attributes]"][name*="[body]"]'
+      end
+
+      it 'renders the last element from user block' do
+        # This is always working
         expect(fieldset).to have_css 'textarea[name*="[translations_attributes]"][name*="[body]"]'
       end
 
