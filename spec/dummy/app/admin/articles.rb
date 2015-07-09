@@ -21,11 +21,9 @@ ActiveAdmin.register Article do
 
   form do |f|
 
-    f.inputs 'Article details' do
-      f.translated_inputs do |t|
-        t.input :title
-        t.input :body
-      end
+    f.translated_inputs 'Article details' do |t|
+      t.input :title
+      t.input :body
     end
 
     f.actions
