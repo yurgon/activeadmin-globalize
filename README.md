@@ -67,6 +67,37 @@ form do |f|
   # ...
 end
 
+# You can also set locales to show in tabs
+# For example we want to show English translation fields without tab, and want to show other languages within tabs 
+form do |f|
+  # ...
+  f.inputs do
+    Globalize.with_locale(:en) do
+      f.input :title
+    end
+  end
+  f.inputs "Translated fields" do
+    f.translated_inputs 'ignored title', switch_locale: false, available_locales: (I18n.available_locales - [:en]) do |t|
+      t.input :title
+      t.input :content
+    end
+  end
+  # ...
+end
+
+# You can also set default language tab
+# For example we want to make Bengali translation tab as default
+form do |f|
+  # ...
+  f.inputs "Translated fields" do
+    f.translated_inputs 'ignored title', switch_locale: false, default_locale: :bn do |t|
+      t.input :title
+      t.input :content
+    end
+  end
+  # ...
+end
+
 ```
 If `switch_locale` is set, each tab will be rendered switching locale.
 
