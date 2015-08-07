@@ -5,13 +5,12 @@ module ActiveAdmin
 
       def translated_inputs(name = "Translations", options = {}, &block)
         options.symbolize_keys!
-        available_locales = options.fetch(:available_locales, I18n.available_locales.sort)
+        available_locales = options.fetch(:available_locales, I18n.available_locales)
         switch_locale = options.fetch(:switch_locale, false)
-        auto_sort = options.fetch(:auto_sort, true)
         default_locale = options.fetch(:default_locale, I18n.default_locale)
         template.content_tag(:div, class: "activeadmin-translations") do
           template.content_tag(:ul, class: "available-locales") do
-            (auto_sort ? available_locales.sort : available_locales).map do |locale|
+            available_locales.map do |locale|
               default = 'default' if locale == default_locale
               template.content_tag(:li) do
                 I18n.with_locale(switch_locale ? locale : I18n.locale) do
@@ -20,7 +19,7 @@ module ActiveAdmin
               end
             end.join.html_safe
           end <<
-          (auto_sort ? available_locales.sort : available_locales).map do |locale|
+          available_locales.map do |locale|
             translation = object.translations.find { |t| t.locale.to_s == locale.to_s }
             translation ||= object.translations.build(locale: locale)
             fields = proc do |form|
