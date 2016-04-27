@@ -33,7 +33,7 @@ syntax shown below for form declaration doesn't work as is. See comments in code
 ```ruby
 
 # For usage with strong parameters you'll need to permit them
-permit_params translations_attributes: [:id, :locale, :title, :content, :_destroy]
+permit_params translations_attributes: [:id, :locale, :title, :description, :_destroy]
 
 index do
   # textual translation status
@@ -41,7 +41,7 @@ index do
   # or with flag icons
   translation_status_flags
   # ...
-  default_actions
+  actions
 end
 
 # This was the original syntax proposed in this gem, however currently it doesn't work
@@ -49,7 +49,7 @@ form do |f|
   # ...
   f.translated_inputs "Translated fields", switch_locale: false do |t|
     t.input :title
-    t.input :content
+    t.input :description
   end
   # ...
 end
@@ -61,7 +61,7 @@ form do |f|
   f.inputs "Translated fields" do
     f.translated_inputs 'ignored title', switch_locale: false do |t|
       t.input :title
-      t.input :content
+      t.input :description
     end
   end
   # ...
@@ -79,7 +79,7 @@ form do |f|
   f.inputs "Translated fields" do
     f.translated_inputs 'ignored title', switch_locale: false, available_locales: (I18n.available_locales - [:en]) do |t|
       t.input :title
-      t.input :content
+      t.input :description
     end
   end
   # ...
@@ -92,7 +92,7 @@ form do |f|
   f.inputs "Translated fields" do
     f.translated_inputs 'ignored title', switch_locale: false, default_locale: :bn do |t|
       t.input :title
-      t.input :content
+      t.input :description
     end
   end
   # ...
