@@ -3,7 +3,7 @@ language: ruby
 # Limit ruby versions to currently supported versions to avoid a big build matrix
 rvm:
   - 2.2
-  - 2.3
+  - 2.3.0
 # Update bundler on travis, since current one is broken, see https://github.com/rubygems/rubygems/issues/1419
 before_install:
   - gem install bundler  
