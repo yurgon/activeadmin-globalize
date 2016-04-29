@@ -1,0 +1,16 @@
+he:
+  active_admin:
+    globalize:
+      translations: "תרגומים"
+      language:
+        de: "גרמנית"
+        en: "אנגלית"
+        es: "ספרדית"
+        fr: "צרפתית"
+        hu: "הונגרית"
+        it: "איטלקית"
+        pt-BR: "פורטוגזית"
+        pt-PT: "פורטוגזית (פורטוגל)"
+        tr: "טורקית"
+        he: "עברית"
+
