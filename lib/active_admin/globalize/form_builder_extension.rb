@@ -39,6 +39,7 @@ module ActiveAdmin
         (sort_locales ? I18n.available_locales.sort : I18n.available_locales).map do |locale|
           translation = object.translations.find { |t| t.locale.to_s == locale.to_s }
           translation ||= object.translations.build(locale: locale)
+          binding.pry
           fields = proc do |form|
             # Using concat is working here
             template.concat form.input(:locale, as: :hidden)
@@ -46,7 +47,9 @@ module ActiveAdmin
             # In user block I still don't know how to get all fields
             I18n.with_locale(switch_locale ? locale : I18n.locale) do
               # Here I get only the last input field!!!!!
-              template.concat user_block.call(form)
+              template.capture do
+                user_block.call(form)
+              end
             end
           end
           inputs_for_nested_attributes(

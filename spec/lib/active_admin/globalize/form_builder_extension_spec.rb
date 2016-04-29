@@ -134,8 +134,10 @@ describe ActiveAdmin::Globalize::FormBuilderExtension do
         end
 
         it 'render arb tags' do
-          expect(body).to have_css 'p', text: 'arb content'
-          expect(body).to have_css 'h1', text: 'my title'
+          puts body.native.to_xhtml( indent:3, indent_text: ' ')
+          # ap body.native.to_s
+          expect(fieldset).to have_css 'p', text: 'arb content'
+          expect(fieldset).to have_css 'h1', text: 'my title'
         end
 
         it 'still render user inputs' do
