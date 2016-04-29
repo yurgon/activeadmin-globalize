@@ -1,8 +1,12 @@
+sudo: false
 language: ruby
-# Limit ruby versions to latest 1.9 and latest 2.2 to avoid a big build matrix
+# Limit ruby versions to currently supported versions to avoid a big build matrix
 rvm:
-  - 1.9
   - 2.2
+  - 2.3
+# Update bundler on travis, since current one is broken, see https://github.com/rubygems/rubygems/issues/1419
+before_install:
+  - gem install bundler  
 # Load database schema before rake
 before_script: bundle exec rake db:schema:load
 # Test on all supported rails versions
