@@ -80,7 +80,7 @@ module Capybara
     # Return an a element used to trigger language switch using javascript
     def flag_link(locale = I18n.locale)
       # find the flag icon by class and go back to parent to get the link
-      find(:xpath, %Q{.//img[contains(@class, "flag-#{locale}")]/..})
+      find(:xpath, %Q{.//i[contains(@class, "flag-#{locale}")]/..})
     end
 
     # Link used to switch tabs for translations

@@ -61,7 +61,16 @@ feature 'Article localization features', :js do
       within first_table_row do
         page.should have_css 'th', text: 'TITLE'
         page.should have_css 'span.field-translation', text: article.title
+
+        flag_link(:hu).find(:xpath, '..').should have_css '.empty:not(.active)'
+        flag_link(:it).find(:xpath, '..').should have_css ':not(.empty):not(.active)'
+
+        flag_link(:hu).click # change shown translation
+        flag_link(:hu).find(:xpath, '..').should have_css '.empty.active'
+
         flag_link(:it).click # change shown translation
+        flag_link(:it).find(:xpath, '..').should have_css ':not(.empty).active'
+
         page.should have_css 'span.field-translation', text: article.translation_for(:it).title
       end
 

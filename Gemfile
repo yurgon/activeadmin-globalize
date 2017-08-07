@@ -14,8 +14,7 @@ gemspec
 # gem 'debugger'
 
 # Gems used by the dummy application
-gem 'rails', '~> 4.0.0'
-gem 'sass-rails', '~> 4.0.2'
+gem 'sass-rails'
 gem 'coffee-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -25,21 +24,21 @@ gem 'uglifier'
 # jquery-rails is
 gem 'jquery-rails'
 
-# Fetch activeadmin from github until is released
-gem 'devise'
+# ActiveAdmin requires devise < 4.0
+gem 'devise', '~> 3.2'
 
 group :test do
   gem 'sqlite3', '~> 1.3.5'
   gem 'rspec-rails', '~> 2.14.0'
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'database_cleaner', '~> 1.0.1'
-  gem 'guard-rspec', require: false
   gem 'spring', require: false
   gem 'spring-commands-rspec', require: false
   gem 'capybara', '~> 2.1.0'
   gem 'capybara-screenshot'
   gem 'poltergeist'
   gem 'fuubar'
+  gem 'appraisal'
   # Useful to debug tests
   gem 'awesome_print'
   gem 'pry'
