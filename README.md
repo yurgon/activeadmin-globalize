@@ -21,7 +21,7 @@ Previous version with support for Rails 3 is maintained in branch [support/0.6.x
 ## Require Assets
 
 - active_admin.js: `//= require active_admin/active_admin_globalize.js`
-- active_admin.scss: `@import "active_admin/active_admin_globalize.css";`
+- active_admin.css: `*= require active_admin/active_admin_globalize`
 
 ## Your model
 
