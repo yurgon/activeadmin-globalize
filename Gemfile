@@ -29,15 +29,15 @@ gem 'devise', '~> 3.2'
 
 group :test do
   gem 'sqlite3', '~> 1.3.5'
-  gem 'rspec-rails', '~> 2.14.0'
+  gem 'rspec-rails', '~> 3.6.1'
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'database_cleaner', '~> 1.0.1'
   gem 'spring', require: false
   gem 'spring-commands-rspec', require: false
-  gem 'capybara', '~> 2.1.0'
+  gem 'capybara', '~> 2.15'
   gem 'capybara-screenshot'
   gem 'poltergeist'
-  gem 'fuubar'
+  gem 'fuubar', '~> 2.2'
   gem 'appraisal'
   # Useful to debug tests
   gem 'awesome_print'

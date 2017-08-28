@@ -10,7 +10,7 @@ Makes it easy to translate your resource fields.
 This version targets Rails 4 and greater and ActiveAdmin >= 1.0.0.pre.
 
 ```ruby
-gem 'activeadmin-globalize', '~> 1.0.0.pre', github: 'fabn/activeadmin-globalize', branch: 'develop'
+gem 'activeadmin-globalize', '~> 1.0.0', github: 'fabn/activeadmin-globalize', branch: 'develop'
 ```
 
 As soon as ActiveAdmin 1.x is released to rubygems, I'll release the gem with no need for github dependency. See
