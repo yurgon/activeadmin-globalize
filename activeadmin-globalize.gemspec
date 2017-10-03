@@ -11,11 +11,11 @@ Gem::Specification.new do |s|
   s.email       = ['stefano.verna@gmail.com', 'f.napoleoni@gmail.com']
   s.homepage    = 'http://github.com/fabn/activeadmin-globalize'
   s.summary     = 'Handles globalize translations'
-  s.description = 'Handles globalize translations in ActiveAdmin 0.6.3 and Rails 3.2.x'
+  s.description = 'Handles globalize translations in ActiveAdmin 1.0 and Rails 4.x-5.x'
 
   s.files = Dir['{app,config,db,lib}/**/*'] + %w(MIT-LICENSE README.md)
 
-  s.add_dependency 'activeadmin', '~> 1.0.0.pre'
+  s.add_dependency 'activeadmin', '>= 1.0', '< 1.2'
   # Try to support rails from 3.2 up to 4.2.x
   s.add_dependency 'globalize', '>= 3.1.0', '< 6.0'
 
@@ -25,4 +25,3 @@ Gem::Specification.new do |s|
   # Other development dependencies moved into Gemfile
 
 end
-
