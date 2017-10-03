@@ -10,22 +10,24 @@ feature 'Article localization features', :js do
 
   scenario 'Create an article' do
 
+    my_title = 'A new article title'
+    my_body = 'Something interesting to say'
+
     within(main_menubar) { click_link 'Articles' }
     within(action_bar) { click_link 'New Article' }
 
     within page_body do
       # This will fill visible fields i.e. for the default locale
-      fill_in 'Title', with: 'A new article title'
-      fill_in 'Body', with: 'Something interesting to say'
+      fill_in 'Title', with: my_title
+      fill_in 'Body', with: my_body
       submit_button.click
     end
 
     page.should have_content 'Article was successfully created.'
 
     # Retrieve created article from database
-    article = Article.first
-    page.should have_content article.title
-    page.should have_content article.body
+    page.should have_content my_title
+    page.should have_content my_body
   end
 
   context 'Viewing article translations' do
@@ -59,7 +61,16 @@ feature 'Article localization features', :js do
       within first_table_row do
         page.should have_css 'th', text: 'TITLE'
         page.should have_css 'span.field-translation', text: article.title
+
+        flag_link(:hu).find(:xpath, '..').should have_css '.empty:not(.active)'
+        flag_link(:it).find(:xpath, '..').should have_css ':not(.empty):not(.active)'
+
+        flag_link(:hu).click # change shown translation
+        flag_link(:hu).find(:xpath, '..').should have_css '.empty.active'
+
         flag_link(:it).click # change shown translation
+        flag_link(:it).find(:xpath, '..').should have_css ':not(.empty).active'
+
         page.should have_css 'span.field-translation', text: article.translation_for(:it).title
       end
 

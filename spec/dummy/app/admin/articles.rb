@@ -1,5 +1,8 @@
 ActiveAdmin.register Article do
 
+  # Allow translations parameters
+  permit_params translations_attributes: [:id, :locale, :title, :body, :_destroy]
+
   index do
     id_column
     column :title
